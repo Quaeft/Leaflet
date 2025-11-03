@@ -21,3 +21,7 @@ export var EPSG3857 = Util.extend({}, Earth, {
 		return toTransformation(scale, 0.5, -scale, 0.5);
 	}())
 });
+
+export var EPSG900913 = Util.extend({}, EPSG3857, {
+	code: 'EPSG:900913'
+});
