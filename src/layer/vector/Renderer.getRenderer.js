@@ -1,5 +1,6 @@
 import {Map} from '../../map/Map';
 import {canvas} from './Canvas';
+import {svg} from './SVG';
 
 Map.include({
 	// @namespace Map; @method getRenderer(layer: Path): Renderer
@@ -35,7 +36,10 @@ Map.include({
 		return renderer;
 	},
 
-	_createRenderer(options) {
-		return canvas(options);
+	_createRenderer: function (options) {
+		// @namespace Map; @option preferCanvas: Boolean = false
+		// Whether `Path`s should be rendered on a `Canvas` renderer.
+		// By default, all `Path`s are rendered in a `SVG` renderer.
+		return (this.options.preferCanvas && canvas(options)) || svg(options);
 	}
 });

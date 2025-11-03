@@ -40,11 +40,11 @@ export var Path = Layer.extend({
 		lineJoin: 'round',
 
 		// @option dashArray: String = null
-		// A string that defines the stroke [dash pattern](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dasharray).
+		// A string that defines the stroke [dash pattern](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dasharray). Doesn't work on `Canvas`-powered layers in [some old browsers](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setLineDash#Browser_compatibility).
 		dashArray: null,
 
 		// @option dashOffset: String = null
-		// A string that defines the [distance into the dash pattern to start the dash](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dashoffset).
+		// A string that defines the [distance into the dash pattern to start the dash](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dashoffset). Doesn't work on `Canvas`-powered layers in [some old browsers](https://developer.mozilla.org/docs/Web/API/CanvasRenderingContext2D/setLineDash#Browser_compatibility).
 		dashOffset: null,
 
 		// @option fill: Boolean = depends
@@ -130,7 +130,11 @@ export var Path = Layer.extend({
 		return this;
 	},
 
-	_reset() {
+	getElement: function () {
+		return this._path;
+	},
+
+	_reset: function () {
 		// defined in child classes
 		this._project();
 		this._update();
