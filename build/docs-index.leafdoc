@@ -25,6 +25,7 @@ This file just defines the order of the classes in the docs.
 
 @class LayerGroup
 @class FeatureGroup
+@class GeoJSON
 @class GridLayer
 
 @class LatLng
